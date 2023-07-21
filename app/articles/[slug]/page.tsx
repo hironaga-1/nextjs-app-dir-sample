@@ -5,7 +5,6 @@ import ArticleContent from "./ArticleContent";
 import Comments from "./Comments";
 import { Heading } from "../../common/components";
 import LoadingComments from "./LoadingComments";
-import type { Metadata, ResovlingMetadata } from "next";
 
 const getArticle = async (slug: string) => {
   const res = await fetch(`http://localhost:3000/api/articles/${slug}`, {
@@ -29,8 +28,7 @@ export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-  parent?: ResolvingMetadata;
-}): Promise<Metadata> {
+}){
   const article = await getArticle(params.slug);
   return {
     title: article?.title,
